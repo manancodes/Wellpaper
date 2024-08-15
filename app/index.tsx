@@ -1,6 +1,12 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  StatusBar,
+} from "react-native";
 import React from "react";
-import { StatusBar } from "expo-status-bar";
 import { hp, wp } from "../helpers/common";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated, { FadeInDown } from "react-native-reanimated";
@@ -11,7 +17,7 @@ const WelcomeScreen = () => {
   const router = useRouter();
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar barStyle="light-content" />
       <Image
         source={require("../assets/images/baloons.png")}
         style={styles.bgImage}
@@ -44,7 +50,7 @@ const WelcomeScreen = () => {
           </Animated.Text>
           <Animated.View entering={FadeInDown.delay(600).springify()}>
             <Pressable
-              // onPress={() => router.push("home")}
+              onPress={() => router.push("/home")}
               style={styles.startButton}
             >
               <Text style={styles.startText}>Explore</Text>

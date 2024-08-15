@@ -1,10 +1,11 @@
-export const theme = {
+export const theme: any = {
   colors: {
     white: "#fff",
     black: "#000",
     grayBG: "#e5e5e5",
-    // neutral
-    neutral: (opacity) => `rgba(255, 255, 255, ${opacity})`,
+    dark: (opacity: number) => `rgba(0, 0, 0, ${opacity})`,
+    neutral: (opacity: number) => `rgba(255, 255, 255, ${opacity})`,
+    charcoal: (opacity: number) => `rgba(10, 10, 10, ${opacity})`,
   },
   fontWeights: {
     medium: "500",
