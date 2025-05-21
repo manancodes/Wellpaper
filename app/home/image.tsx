@@ -31,14 +31,20 @@ const ImageScreen = () => {
 
   const getSize = () => {
     const aspectRatio = Number(item?.imageWidth) / Number(item?.imageHeight);
+    const maxWidth = Platform.OS === "web" ? wp(50) : wp(92);
+    const maxHeight = hp(80);
 
-    const maxWidth = Platform.OS == "web" ? wp(50) : wp(92);
-    let calculatedHeight = maxWidth / aspectRatio;
     let calculatedWidth = maxWidth;
+    let calculatedHeight = maxWidth / aspectRatio;
 
-    if (aspectRatio < 1) {
-      // portrait image
-      calculatedWidth = calculatedHeight * aspectRatio;
+    if (calculatedHeight > maxHeight) {
+      calculatedHeight = maxHeight;
+      calculatedWidth = maxHeight * aspectRatio;
+    }
+
+    if (calculatedWidth > maxWidth) {
+      calculatedWidth = maxWidth;
+      calculatedHeight = maxWidth / aspectRatio;
     }
     return {
       width: calculatedWidth,

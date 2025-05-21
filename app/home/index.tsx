@@ -33,20 +33,17 @@ const HomeScreen = () => {
   const scrollRef: any = useRef(null);
   const router = useRouter();
   const [isEndReached, setIsEndReached] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchImages();
   }, []);
 
   const fetchImages = async (params = { page: 1 }, append = true) => {
-    setLoading(true);
     let res = await apiCall(params);
     if (res.success && res?.data?.hits) {
       if (append) setImages([...images, ...res.data.hits]);
       else setImages([...res.data.hits]);
     }
-    setLoading(false);
   };
 
   const openFiltersModal = () => {
@@ -266,17 +263,14 @@ const HomeScreen = () => {
             </ScrollView>
           </View>
         )}
-        {loading ? (
-          <View
-            style={{ marginBottom: 70, marginTop: images.length > 0 ? 10 : 70 }}
-          >
-            <ActivityIndicator size="large" />
-          </View>
-        ) : (
-          <View>
-            {images.length > 0 && <ImageGrid images={images} router={router} />}
-          </View>
-        )}
+        <View>
+          {images.length > 0 && <ImageGrid images={images} router={router} />}
+        </View>
+        <View
+          style={{ marginBottom: 70, marginTop: images.length > 0 ? 10 : 70 }}
+        >
+          <ActivityIndicator size="large" />
+        </View>
       </ScrollView>
       <FiltersModal
         modalRef={modalRef}
@@ -339,8 +333,8 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   filterItem: {
-    backgroundColor: theme.colors.grayBG,
-    padding: 3,
+    backgroundColor: theme.colors.neutral(0.1),
+    padding: 8,
     flexDirection: "row",
     alignItems: "center",
     borderRadius: theme.radius.xs,
@@ -351,7 +345,7 @@ const styles = StyleSheet.create({
     fontSize: hp(1.9),
   },
   filterCloseIcon: {
-    backgroundColor: theme.colors.neutral(0.2),
+    backgroundColor: theme.colors.neutral(0.1),
     padding: 4,
     borderRadius: 7,
   },
