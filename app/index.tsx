@@ -19,7 +19,7 @@ const WelcomeScreen = () => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <Image
-        source={require("../assets/images/baloons.png")}
+        source={require("../assets/images/background.jpg")}
         style={styles.bgImage}
         resizeMode="cover"
       />
